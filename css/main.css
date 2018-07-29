@@ -2,6 +2,13 @@
     --jumbotron-padding-y: 3rem;
   }
 
+canvas {
+  border: 1px solid black;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 body {
   background-color: black;
 }
