@@ -56,3 +56,8 @@ body {
   .album {
     background-image: url("http://repper.studioludens.com/patterns/pattern_96B462B9-5E67-1853-EDFF-E7E988EA7D71.jpg");
   }
+
+  #gameCanvas {
+    margin: 0 auto;
+    padding: 0;
+  }
