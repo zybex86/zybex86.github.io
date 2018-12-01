@@ -1,5 +1,5 @@
 // draws the car
-function  drawBitmapCenteredWithRotation(useBitmap, atX, atY, withAng) 
+function  drawBitmapCenteredWithRotation(useBitmap, atX, atY, withAng)
 {
     // 4. saves our canvas
     canvasContext.save();
@@ -13,28 +13,22 @@ function  drawBitmapCenteredWithRotation(useBitmap, atX, atY, withAng)
     canvasContext.restore();
 }
 
-function writeText(showWords, textX,textY, fillColor) 
+function writeText(showWords, textX,textY, fillColor)
 {
     canvasContext.fillStyle = fillColor;
     canvasContext.fillText(showWords, textX,textY);
 }
 
-function drawRect(topLextX,topLeftY, boxWidth,boxheight, fillColor) 
+function drawRect(topLextX,topLeftY, boxWidth,boxheight, fillColor)
 {
     canvasContext.fillStyle = fillColor;
     canvasContext.fillRect(topLextX,topLeftY, boxWidth,boxheight);
 }
 
-function drawCircle(centerX,centerY, radius, fillColor) 
+function drawCircle(centerX,centerY, radius, fillColor)
 {
     canvasContext.fillStyle = fillColor;
     canvasContext.beginPath();
     canvasContext.arc(centerX,centerY, radius, 0, Math.PI * 2, true);
     canvasContext.fill();
-}
-
-function clearScreen()
-{
-    // draws the game screen
-    drawRect(0,0, canvas.width, canvas.height, 'black');
 }
