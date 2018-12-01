@@ -2,7 +2,7 @@
 var canvas, canvasContext;
 
 
-window.onload = function() 
+window.onload = function()
 {
     // references the canvas
     canvas = document.getElementById('gameCanvas');
@@ -13,25 +13,28 @@ window.onload = function()
     setInterval(updateAll, 1000 / framesPerSecond);
 
     setupInput();
-    carImageLoad()
+
+    trackLoadImages();
+    carImageLoad();
     carReset();
 }
 
-function updateAll() 
+function updateAll()
 {
-    moveAll(); 
+    moveAll();
     drawAll();
 }
 
-function moveAll() 
+function moveAll()
 {
     carMove();
     carTrackHandling();
-} 
+}
 
-function drawAll() 
+function drawAll()
 {
     clearScreen();
-    carDraw();
     drawTracks();
+    carDraw();
+
 }
