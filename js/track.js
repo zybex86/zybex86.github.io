@@ -1,7 +1,3 @@
-// load images
-var roadPic = document.createElement("img");
-var wallPic = document.createElement("img");
-
 // global tracks variables and constants
 const TRACK_W = 40;
 const TRACK_H = 40;
@@ -22,7 +18,7 @@ var trackGrid =[4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 1, 1, 1, 1, 4, 4, 4,
                 1, 0, 0, 1, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 1,
                 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 5, 1, 0, 0, 0, 0, 0, 1,
-                1, 0, 2, 1, 1, 1, 1, 0, 0, 0, 1, 1, 4, 1, 1, 0, 0, 0, 1, 1,
+                5, 0, 2, 5, 1, 1, 1, 0, 0, 0, 1, 1, 4, 1, 1, 0, 0, 0, 1, 1,
                 1, 1, 1, 1, 4, 4, 1, 1, 1, 1, 1, 4, 4, 4, 1, 1, 1, 1, 1, 4];
 
 const TRACK_ROAD = 0;
@@ -31,13 +27,6 @@ const TRACK_PLAYERSTART = 2;
 const TRACK_GOAL = 3;
 const TRACK_TREE = 4;
 const TRACK_START = 5;
-
-function trackLoadImages()
-{
-    roadPic.src = "img/track_road.png";
-    wallPic.src = "img/track_wall.png";
-}
-
 
 //checks if a wall is in the spot where we are with the car
 

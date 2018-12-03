@@ -1,11 +1,6 @@
-// image variables
-var carPic = document.createElement("img");
-var carPicLoaded = false;
-
 // global variables for car
 var carX = 75;
 var carY = 75;
-var carRadius = 10;
 var carSpeed = 0;
 var carAng = 0;
 

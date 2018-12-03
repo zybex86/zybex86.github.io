@@ -1,7 +1,6 @@
 // global variables for game space
 var canvas, canvasContext;
 
-
 window.onload = function()
 {
     // references the canvas
@@ -20,9 +19,6 @@ function imageLoadDoneSoStartGame() {
     setInterval(updateAll, 1000 / framesPerSecond);
 
     setupInput();
-
-    trackLoadImages();
-    carImageLoad();
     carReset();
 }
 
