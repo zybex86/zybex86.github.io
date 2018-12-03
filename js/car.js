@@ -15,7 +15,7 @@ const DRIVE_POWER = 0.5;
 const REVERSE_POWER = 0.2;
 const TURN_RATE = 0.06;
 const BRAKE_POWER = 0.5;
-const MIN_SPEED_TO_TURN;
+const MIN_SPEED_TO_TURN = 0.5;
 
 function carReset()
 {
@@ -57,26 +57,27 @@ function carMove()
 
     }// end of keyHeld_Reverse
 
-    if (keyHeld_TurnLeft)
-    {
-        if (carSpeed > 0)
-        {
-            carAng -= TURN_RATE;
-        } else {
-            carAng += TURN_RATE;
-        }// end of turning left while in reverse
-    }// end of turning
+    if(Math.abs(carSpeed) > MIN_SPEED_TO_TURN ) {
+      if (keyHeld_TurnLeft)
+      {
+          if (carSpeed > 0)
+          {
+              carAng -= TURN_RATE;
+          } else {
+              carAng += TURN_RATE;
+          }// end of turning left while in reverse
+      }// end of turning
 
-    if (keyHeld_TurnRight)
-    {
-        if (carSpeed < 0)
-        {
-            carAng -= TURN_RATE;
-        } else {
-            carAng += TURN_RATE;
-        }// end of turning right while in reverse
-    }// end of turning
-
+      if (keyHeld_TurnRight)
+      {
+          if (carSpeed < 0)
+          {
+              carAng -= TURN_RATE;
+          } else {
+              carAng += TURN_RATE;
+          }// end of turning right while in reverse
+      }// end of turning
+}
     // moves the car
     // decomposes the angular value into X and Y positions
     carX += Math.cos(carAng) * carSpeed;
