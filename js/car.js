@@ -13,25 +13,18 @@ var carAng = 0;
 const GROUNDSPEED_DECAY_MULT = 0.96;
 const DRIVE_POWER = 0.5;
 const REVERSE_POWER = 0.2;
-const TURN_RATE = 0.03;
+const TURN_RATE = 0.06;
 const BRAKE_POWER = 0.5;
+const MIN_SPEED_TO_TURN;
 
-function carImageLoad()
-{
-    carPic.onload = function() { //calls this only when the image loads
-        carPicLoaded = true;
-    }
-    carPic.src = "img/car1.png";
-}
-
-function carReset() 
+function carReset()
 {
     for (var eachRow = 0; eachRow < TRACK_ROWS; eachRow++)
         for (var eachCol = 0; eachCol < TRACK_COLUMNS; eachCol++)
         {
             var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
             // draws the car and makes sure there is no track under it.
-            if (trackGrid[arrayIndex] == TRACK_PLAYERSTART) 
+            if (trackGrid[arrayIndex] == TRACK_PLAYERSTART)
             {
                 trackGrid[arrayIndex] = TRACK_ROAD;
                 carAng = -Math.PI / 2;
@@ -61,7 +54,7 @@ function carMove()
         } else {
             carSpeed -= REVERSE_POWER;
         }// end of fast brakes
-        
+
     }// end of keyHeld_Reverse
 
     if (keyHeld_TurnLeft)
@@ -90,11 +83,7 @@ function carMove()
     carY += Math.sin(carAng) * carSpeed;
 }
 
-function carDraw() 
+function carDraw()
 {
-    //drawCircle(carX, carY, carRadius, 'white'); 
-    if (carPicLoaded)
-    {
-        drawBitmapCenteredWithRotation(carPic, carX, carY, carAng);
-    }
+    drawBitmapCenteredWithRotation(carPic, carX, carY, carAng);
 }
