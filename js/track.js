@@ -8,13 +8,9 @@ const TRACK_H = 40;
 const TRACK_COLUMNS = 20;
 const TRACK_GAP = 2;
 const TRACK_ROWS = 15;
-<<<<<<< HEAD
+
 var trackGrid =[4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 1, 1, 1, 1, 4, 4, 4,
                 4, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 4, 4, 1, 0, 0, 1, 1, 1, 4,
-=======
-var trackGrid =[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1,
->>>>>>> e4aa31505320fcfdbd6d28da6e812f4e797db703
                 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1,
                 1, 0, 0, 0, 0, 1, 5, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,
                 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 5, 0, 0, 0, 1,
@@ -25,15 +21,9 @@ var trackGrid =[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1,
                 1, 0, 0, 1, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 1,
                 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-<<<<<<< HEAD
                 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 5, 1, 0, 0, 0, 0, 0, 1,
                 1, 0, 2, 1, 1, 1, 1, 0, 0, 0, 1, 1, 4, 1, 1, 0, 0, 0, 1, 1,
                 1, 1, 1, 1, 4, 4, 1, 1, 1, 1, 1, 4, 4, 4, 1, 1, 1, 1, 1, 4];
-=======
-                1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1,
-                1, 0, 2, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1,
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
->>>>>>> e4aa31505320fcfdbd6d28da6e812f4e797db703
 
 const TRACK_ROAD = 0;
 const TRACK_WALL = 1;
@@ -50,11 +40,8 @@ function trackLoadImages()
 
 
 //checks if a wall is in the spot where we are with the car
-<<<<<<< HEAD
+
 function isObstacleAtColRow(col, row)
-=======
-function isWallAtColRow(col, row)
->>>>>>> e4aa31505320fcfdbd6d28da6e812f4e797db703
 {
     if(col >= 0 && col < TRACK_COLUMNS &&
        row >= 0 && row < TRACK_ROWS)
@@ -78,11 +65,7 @@ function carTrackHandling()
     if(carTrackCol >= 0 && carTrackCol < TRACK_COLUMNS &&
        carTrackRow >= 0 && carTrackRow < TRACK_ROWS)
         {
-<<<<<<< HEAD
             if (isObstacleAtColRow(carTrackCol, carTrackRow))
-=======
-            if (isWallAtColRow(carTrackCol, carTrackRow))
->>>>>>> e4aa31505320fcfdbd6d28da6e812f4e797db703
             {
                 carX -= Math.cos(carAng) * (carSpeed * 2);
                 carY -= Math.sin(carAng) * (carSpeed * 2);
@@ -106,7 +89,6 @@ function drawTracks()
             var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
             // draws tracks that are visible
 
-<<<<<<< HEAD
             var tileKindHere = trackGrid[arrayIndex];
             var useImg;
             switch(tileKindHere)
@@ -131,17 +113,6 @@ function drawTracks()
           } // end of switch track
 
           canvasContext.drawImage(useImg, TRACK_W * eachCol, TRACK_H * eachRow);
-=======
-            if (trackGrid[arrayIndex] == TRACK_ROAD)
-            {
-                canvasContext.drawImage(roadPic, TRACK_W * eachCol, TRACK_H * eachRow);
-
-            } else if(trackGrid[arrayIndex] == TRACK_WALL) {
-
-                canvasContext.drawImage(wallPic, TRACK_W * eachCol, TRACK_H * eachRow);
-
-            } // end of this track
->>>>>>> e4aa31505320fcfdbd6d28da6e812f4e797db703
 
         } // end of column for loop
 } // end of drawTracks()

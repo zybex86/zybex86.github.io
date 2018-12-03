@@ -20,12 +20,9 @@ function imageLoadDoneSoStartGame() {
     setInterval(updateAll, 1000 / framesPerSecond);
 
     setupInput();
-<<<<<<< HEAD
-=======
 
     trackLoadImages();
     carImageLoad();
->>>>>>> e4aa31505320fcfdbd6d28da6e812f4e797db703
     carReset();
 }
 
@@ -43,10 +40,7 @@ function moveAll()
 
 function drawAll()
 {
-<<<<<<< HEAD
-=======
-    clearScreen();
->>>>>>> e4aa31505320fcfdbd6d28da6e812f4e797db703
+
     drawTracks();
     carDraw();
 
