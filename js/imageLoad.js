@@ -1,10 +1,6 @@
 // image variables
 var carPic = document.createElement("img");
-var roadPic = document.createElement("img");
-var wallPic = document.createElement("img");
-var startPic = document.createElement("img");
-var goalPic = document.createElement("img");
-var treePic = document.createElement("img");
+var trackPics = [];
 
 var picsToLoad = 0; //set automatacally based on imageList
 
@@ -20,18 +16,31 @@ function beginLoadingImage(imgVar, fileName) {
   imgVar.src = "img/"+fileName;
 }
 
+function loadImageForTrackCode(trackCode, fileName) {
+  trackPics[trackCode] = document.createElement("img");
+  beginLoadingImage(trackPics[trackCode], fileName);
+}
+
 function loadImages() {
     var imageList = [
       {varName: carPic, theFile: "car1.png"},
-      {varName: roadPic, theFile: "track_road.png"},
-      {varName: wallPic, theFile: "track_wall.png"},
-      {varName: startPic, theFile: "track_start.png"},
-      {varName: goalPic, theFile: "track_goal.png"},
-      {varName: treePic, theFile: "track_tree.png"}
+      {trackType: TRACK_ROAD, theFile: "track_road.png"},
+      {trackType: TRACK_WALL, theFile: "track_wall.png"},
+      {trackType: TRACK_START, theFile: "track_start.png"},
+      {trackType: TRACK_GOAL, theFile: "track_goal.png"},
+      {trackType: TRACK_TREE, theFile: "track_tree.png"}
     ];
 
     picsToLoad = imageList.length;
 
-  for(var i=0; i<imageList.length; i++)
-    beginLoadingImage(imageList[i].varName, imageList[i].theFile);
+  for(var i=0; i<imageList.length; i++) {
+    if(imageList[i].varName != undefined) {
+        beginLoadingImage(imageList[i].varName, imageList[i].theFile);
+    } else {
+      loadImageForTrackCode( imageList[i].trackType, imageList[i].theFile)
+    }
+
+  }
+
+
 }
