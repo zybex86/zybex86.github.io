@@ -5,14 +5,14 @@ const TRACK_COLUMNS = 20;
 const TRACK_GAP = 2;
 const TRACK_ROWS = 15;
 
-var trackGrid =[4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 1, 1, 1, 1, 4, 4, 4,
+var levelOne  =[4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 1, 1, 1, 1, 4, 4, 4,
                 4, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 4, 4, 1, 0, 0, 1, 1, 1, 4,
                 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1,
                 1, 0, 0, 0, 0, 1, 2, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,
                 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 2, 0, 0, 0, 1,
                 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1,
                 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 4, 1, 0, 0, 1, 4, 1, 0, 0, 1,
-                1, 0, 0, 1, 0, 0, 0, 1, 1, 4, 4, 2, 0, 5, 2, 4, 1, 0, 0, 1,
+                1, 0, 0, 1, 0, 0, 0, 1, 1, 4, 4, 2, 5, 5, 2, 4, 1, 0, 0, 1,
                 1, 0, 0, 1, 0, 0, 0, 1, 4, 4, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1,
                 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1,
                 1, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1,
@@ -21,6 +21,7 @@ var trackGrid =[4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 1, 1, 1, 1, 4, 4, 4,
                 1, 3, 3, 1, 1, 1, 1, 0, 0, 0, 1, 1, 4, 1, 1, 0, 0, 0, 1, 1,
                 1, 0, 0, 1, 4, 4, 1, 1, 1, 1, 1, 4, 4, 4, 1, 1, 1, 1, 1, 4];
 
+var trackGrid = [];
 const TRACK_ROAD = 0;
 const TRACK_WALL = 1;
 const TRACK_START = 2;
@@ -28,38 +29,44 @@ const TRACK_GOAL = 3;
 const TRACK_TREE = 4;
 const TRACK_PLAYERSTART = 5;
 
-//checks if a wall is in the spot where we are with the car
+//checks if there is a tyle is in the spot where we are with the car
 
-function isObstacleAtColRow(col, row)
+function returnTileTypeAtColRow(col, row)
 {
     if(col >= 0 && col < TRACK_COLUMNS &&
        row >= 0 && row < TRACK_ROWS)
         {
             var trackIndexUnderCoord = rowColToArrayIndex(col, row);
 
-            return (trackGrid[trackIndexUnderCoord] != TRACK_ROAD); // found an obsticle
+            return trackGrid[trackIndexUnderCoord]; // found a tile
         } else {
-            return false; // there is nothing there
+            return TRACK_WALL; // there is a wall + can't go out of bounds
         }
 }
 
-function carTrackHandling()
+function carTrackHandling(whichCar)
 {
     // which column and row and which track INDEX we are at
-    var carTrackCol = Math.floor(carX / TRACK_W);
-    var carTrackRow = Math.floor(carY / TRACK_H);
+    var carTrackCol = Math.floor(whichCar.x / TRACK_W);
+    var carTrackRow = Math.floor(whichCar.y / TRACK_H);
     var trackIndexUnderCar = rowColToArrayIndex(carTrackCol, carTrackRow);
 
-    // car bumps the wall
+    // car bumps the obsticle
     if(carTrackCol >= 0 && carTrackCol < TRACK_COLUMNS &&
        carTrackRow >= 0 && carTrackRow < TRACK_ROWS)
         {
-            if (isObstacleAtColRow(carTrackCol, carTrackRow))
+            var tileType = returnTileTypeAtColRow(carTrackCol, carTrackRow);
+            if (tileType == TRACK_GOAL) {
+                // If somebody wins
+                console.log(whichCar.name + " WINS!");
+                loadLevel(levelOne);
+            }
+            else if (tileType != TRACK_ROAD)
             {
-                carX -= Math.cos(carAng) * (carSpeed * 2);
-                carY -= Math.sin(carAng) * (carSpeed * 2);
+                whichCar.x -= Math.cos(whichCar.ang) * (whichCar.speed * 2);
+                whichCar.y -= Math.sin(whichCar.ang) * (whichCar.speed * 2);
 
-                carSpeed *= -0.5;
+                whichCar.speed *= -0.5;
 
             } //end of track found
         } //end of valid col and row
