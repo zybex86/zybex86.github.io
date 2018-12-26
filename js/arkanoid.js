@@ -71,7 +71,7 @@
                 canvasContext = canvas.getContext('2d');
 
                 // sets framerate of refresh
-                var framesPerSecond = 30;
+                var framesPerSecond = 40;
                 setInterval(updateAll, 1000 / framesPerSecond);
 
                 // moves the paddle

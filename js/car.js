@@ -14,6 +14,7 @@ function carClass() {
   this.ang = 0;
   this.carPic; // which picture to use
   this.name = "Untitled car";
+  this.score = 0;
 
   // helps to turn the keys into buttons
   this.keyHeld_Gas = false;

@@ -1,8 +1,28 @@
 // global variables for game space
 var canvas, canvasContext;
 
+// create cars and set first track
 var blueCar = new carClass();
 var greenCar = new carClass();
+var track = 0;
+
+// score variables
+var showingWinScreen = false;
+const WIN_CONDITION = 3;
+
+function handleMouseClick()
+{
+    if (showingWinScreen) {
+        blueCar.score = 0;
+        greenCar.score = 0;
+        showingWinScreen = false;
+        track = 0;
+        document.getElementById('greenScore').innerHTML = greenCar.score;
+        document.getElementById('blueScore').innerHTML = blueCar.score;;
+        loadLevel(levels[track]);
+    }
+}
+
 
 window.onload = function()
 {
@@ -10,12 +30,19 @@ window.onload = function()
     canvas = document.getElementById('gameCanvas');
     canvasContext = canvas.getContext('2d');
 
+    document.getElementById('greenScore').innerHTML = greenCar.score;
+    document.getElementById('blueScore').innerHTML = blueCar.score;;
+    
+
     drawRect(0, 0, canvas.width, canvas.height, "black");
     writeText("Loading...", canvas.width / 2, canvas.height / 2, "white");
 
+    // reset the game
+    canvas.addEventListener('mousedown', handleMouseClick); 
+
     loadImages();
 
-    loadLevel(levelOne);
+    loadLevel(levels[track]);
 }
 
 function loadLevel(whichLevel) {
@@ -50,8 +77,21 @@ function moveAll()
 function drawAll()
 {
 
-    drawTracks();
-    greenCar.draw();
-    blueCar.draw();
+    if(track >= 5 || greenCar.score == WIN_CONDITION || blueCar.score == WIN_CONDITION) {
+        drawRect(0, 0, canvas.width, canvas.height, "black");
+        if(greenCar.score == WIN_CONDITION){
+            writeText(greenCar.name + " wins!", canvas.width / 2, canvas.height / 2, "white");    
+        } else if(blueCar.score == WIN_CONDITION) {
+            writeText(blueCar.name + " wins!", canvas.width / 2, canvas.height / 2, "white");    
+        }
+        writeText("Click to restart!", canvas.width / 2, canvas.height / 2 + 200, "white");    
+        return;
+    } else { // if 
+        drawTracks();
+        greenCar.draw();
+        blueCar.draw();
+        
+    }
+    
 
 }

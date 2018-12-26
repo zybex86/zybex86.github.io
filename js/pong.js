@@ -51,7 +51,7 @@ window.onload = function()
     canvasContext = canvas.getContext('2d');
     
     // moves the game
-    var framesPerSecond = 30;
+    var framesPerSecond = 40;
     setInterval(function() {
         moveEverything();
         drawEverything();

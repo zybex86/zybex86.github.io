@@ -13,9 +13,10 @@ function  drawBitmapCenteredWithRotation(useBitmap, atX, atY, withAng)
     canvasContext.restore();
 }
 
-function writeText(showWords, textX,textY, fillColor)
+function writeText(showWords, textX,textY, fillColor, font = "30px Verdana")
 {
     canvasContext.fillStyle = fillColor;
+    canvasContext.font = font;
     canvasContext.fillText(showWords, textX,textY);
 }
 

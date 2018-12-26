@@ -60,7 +60,23 @@
   <main role="main">
     <section class="jumbotron text-center">
       <h1 class="jumbotron-heading text-dark">My Racing game in JavaScript</h1>
-      <canvas id="gameCanvas" width="800" height="600"></canvas>
+      
+        <div class="row">
+          <div id="greenScoreBoard" class="col-sm-2 text-center text-success" height="400">
+            <h4>Green Car Score</h4>
+            <p id="greenScore" class="display-1"></p>
+          </div><!-- end of COLUMN -->
+          <div class="col-sm-8">
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+          </div><!-- end of COLUMN -->
+          <div id="blueScoreBoard" class="col-sm-2 text-center text-primary" height="400">
+            <h4>Blue Car Score</h4>
+            <p id="blueScore" class="display-1"></p>
+          </div><!-- end of COLUMN -->
+        </div><!-- end of ROW -->
+      
+          
+          
     </section>
   </main>
 
