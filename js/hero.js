@@ -1,26 +1,19 @@
 // constants for moving the hero
-const GROUNDSPEED_DECAY_MULT = 0.96;
-const DRIVE_POWER = 0.5;
-const REVERSE_POWER = 0.2;
-const TURN_RATE = 0.06;
-const BRAKE_POWER = 0.5;
-const MIN_SPEED_TO_TURN = 0.5;
+const WALK_SPEED = 3.0;
+
 
 function heroClass() {
   // variables for a hero
   this.x = 75;
   this.y = 75;
-  this.speed = 0;
-  this.ang = 0;
   this.heroPic; // which picture to use
   this.name = "Untitled hero";
-  this.score = 0;
 
   // helps to turn the keys into buttons
-  this.keyHeld_Gas = false;
-  this.keyHeld_Reverse = false;
-  this.keyHeld_TurnLeft = false;
-  this.keyHeld_TurnRight = false;
+  this.keyHeld_Up = false;
+  this.keyHeld_Down = false;
+  this.keyHeld_GoLeft = false;
+  this.keyHeld_GoRight = false;
 
   // seperate controls for each hero
   this.controlKeyUp;
@@ -40,7 +33,6 @@ function heroClass() {
   this.reset = function(whichImage, heroName) {
     this.name = heroName;
     this.heroPic = whichImage;
-    this.speed = 0;
 
       for (var eachRow = 0; eachRow < WORLD_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < WORLD_COLUMNS; eachCol++)
@@ -62,54 +54,39 @@ function heroClass() {
 
   this.move = function()
   {
-      // every frame it lowers the speed by 3% -> adds friction, so
-      // the hero doesn't behave as flying in space :)
-      this.speed *= GROUNDSPEED_DECAY_MULT;
-
+      var nextX = this.x;
+      var nextY = this.y;
       // allows the player to steer the hero
-      if (this.keyHeld_Gas)
+      if (this.keyHeld_Up)
       {
-          this.speed += DRIVE_POWER;
-      }
+          nextY -= WALK_SPEED;
+      }// end of go up
 
-      if (this.keyHeld_Reverse)
+      if (this.keyHeld_Down)
       {
-          if (this.speed > 0)
-          {
-              this.speed -= BRAKE_POWER;
-          } else {
-              this.speed -= REVERSE_POWER;
-          }// end of fast brakes
+        nextY += WALK_SPEED;
 
-      }// end of keyHeld_Reverse
+      }// end of go down
 
-      if(Math.abs(this.speed) > MIN_SPEED_TO_TURN ) {
-        if (this.keyHeld_TurnLeft)
+        if (this.keyHeld_GoLeft)
         {
-            if (this.speed > 0)
-            {
-                this.ang -= TURN_RATE;
-            } else {
-                this.ang += TURN_RATE;
-            }// end of turning left while in reverse
-        }// end of turning
+            nextX -= WALK_SPEED;
+        }// end of go left
 
-        if (this.keyHeld_TurnRight)
+        if (this.keyHeld_GoRight)
         {
-            if (this.speed < 0)
-            {
-                this.ang -= TURN_RATE;
-            } else {
-                this.ang += TURN_RATE;
-            }// end of turning right while in reverse
-        }// end of turning
-  }
-      // moves the hero
-      // decomposes the angular value into X and Y positions
-      this.x += Math.cos(this.ang) * this.speed;
-      this.y += Math.sin(this.ang) * this.speed;
+            nextX += WALK_SPEED;
+        }// end of go right
+  
+        var walkIntoTileIndex = getTileTypeAtPixelCoord(nextX, nextY);
 
-      heroWorldHandling(this);
+        if(walkIntoTileIndex == WORLD_GOAL) {
+			console.log(this.name + " WINS!");
+			loadLevel(levelOne);
+		} else if(walkIntoTileIndex == WORLD_ROAD) {
+			this.x = nextX;
+			this.y = nextY;
+		}
   }
 
   this.draw = function ()

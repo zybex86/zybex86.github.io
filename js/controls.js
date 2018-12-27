@@ -1,8 +1,5 @@
 // key input variables
-const KEY_LEFT_ARROW = 37;
-const KEY_UP_ARROW = 38;
-const KEY_RIGHT_ARROW = 39;
-const KEY_DOWN_ARROW = 40;
+
 
 const KEY_W = 87;
 const KEY_A = 65;
@@ -35,25 +32,25 @@ function updateMousePos(evt)
 }
 
 // Check if the key is pressed or released
-function keySet(keyEvent, whichHero, setTo) {
+function keySet(keyEvent, setTo) {
 
-  if (keyEvent.keyCode == whichHero.controlKeyLeft)
+  if (keyEvent.keyCode == greenHero.controlKeyLeft)
   {
-      whichHero.keyHeld_TurnLeft = setTo;
+      greenHero.keyHeld_GoLeft = setTo;
   }
 
-  if (keyEvent.keyCode == whichHero.controlKeyRight)
+  if (keyEvent.keyCode == greenHero.controlKeyRight)
   {
-      whichHero.keyHeld_TurnRight = setTo;
+      greenHero.keyHeld_GoRight = setTo;
   }
 
-  if (keyEvent.keyCode == whichHero.controlKeyUp)
+  if (keyEvent.keyCode == greenHero.controlKeyUp)
   {
-      whichHero.keyHeld_Gas = setTo;
+      greenHero.keyHeld_Up = setTo;
   }
-  if (keyEvent.keyCode == whichHero.controlKeyDown)
+  if (keyEvent.keyCode == greenHero.controlKeyDown)
   {
-      whichHero.keyHeld_Reverse = setTo;
+      greenHero.keyHeld_Down = setTo;
   }
 }
 
@@ -61,12 +58,13 @@ function keyPressed(evt)
 {
   // debug to check the keyCode value
   //console.log("Key pressed: "+ evt.keyCode);
-  keySet(evt, greenHero, true);
+  keySet(evt, true);
   
+  evt.preventDefault();
 }
 
 function keyReleased(evt)
 {
-    keySet(evt, greenHero, false);
+    keySet(evt, false);
     
 }

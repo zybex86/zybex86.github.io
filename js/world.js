@@ -110,48 +110,20 @@ function returnTileTypeAtColRow(col, row)
         }
 }
 
-function heroWorldHandling(whichHero)
-{
-    // which column and row and which world INDEX we are at
-    var heroWorldCol = Math.floor(whichHero.x / WORLD_W);
-    var heroWorldRow = Math.floor(whichHero.y / WORLD_H);
-    var worldIndexUnderHero = rowColToArrayIndex(heroWorldCol, heroWorldRow);
+function getTileTypeAtPixelCoord(atX, atY) {
+	var heroWorldCol = Math.floor(atX / WORLD_W);
+	var heroWorldRow = Math.floor(atY / WORLD_H);
+	var worldIndexUnderWarrior = rowColToArrayIndex(heroWorldCol, heroWorldRow);
 
-    // hero bumps the obsticle
-    if(heroWorldCol >= 0 && heroWorldCol < WORLD_COLUMNS &&
-       heroWorldRow >= 0 && heroWorldRow < WORLD_ROWS)
-        {
-            var tileType = returnTileTypeAtColRow(heroWorldCol, heroWorldRow);
-            if (tileType == WORLD_GOAL) {
-                // If somebody gets 3 wins
-                if(world <= 4 && whichHero.score != WIN_CONDITION) {
-                    world++;
-                    whichHero.score++;
-                }
-                
-                if(!showingWinScreen) {
-                    
-                }
-                
-                if(greenHero.score == WIN_CONDITION) {
-                    showingWinScreen = true;
+	if(heroWorldCol >= 0 && heroWorldCol < WORLD_COLUMNS &&
+		heroWorldRow >= 0 && heroWorldRow < WORLD_ROWS) {
+		var tileHere = returnTileTypeAtColRow( heroWorldCol,heroWorldRow );
 
-                    return;
-                }
-                    
-                loadLevel(levels[world]);
-                
-            }
-            else if (tileType != WORLD_ROAD)
-            {
-                whichHero.x -= Math.cos(whichHero.ang) * (whichHero.speed * 2);
-                whichHero.y -= Math.sin(whichHero.ang) * (whichHero.speed * 2);
+		return tileHere;
+	} // end of valid col and row
 
-                whichHero.speed *= -0.5;
-
-            } //end of world found
-        } //end of valid col and row
-} // and of heroWorldHandling()
+	return WORLD_WALL; // treat outside the map boundary as solid area
+} // end of heroWorldHandling func
 
 function rowColToArrayIndex(col, row)
 {

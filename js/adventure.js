@@ -1,9 +1,9 @@
 // global variables for game space
 var canvas, canvasContext;
 
-// create heros and set first track
+// create heros and set first world
 var greenHero = new heroClass();
-var track = 0;
+var world = 0;
 
 // score variables
 var showingWinScreen = false;
@@ -15,10 +15,10 @@ function handleMouseClick()
 
         greenHero.score = 0;
         showingWinScreen = false;
-        track = 0;
+        world = 0;
          
 
-        loadLevel(levels[track]);
+        loadLevel(levels[world]);
     }
 }
 
@@ -41,11 +41,11 @@ window.onload = function()
 
     loadImages();
 
-    loadLevel(levels[track]);
+    loadLevel(levels[world]);
 }
 
 function loadLevel(whichLevel) {
-    trackGrid = whichLevel.slice(); // slice makes the two tables seperate data, without slice we have the same data
+    worldGrid = whichLevel.slice(); // slice makes the two tables seperate data, without slice we have the same data
     greenHero.reset(heroPic, "Green Lightning");
     
 }
