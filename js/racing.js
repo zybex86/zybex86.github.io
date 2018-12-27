@@ -18,7 +18,7 @@ function handleMouseClick()
         showingWinScreen = false;
         track = 0;
         document.getElementById('greenScore').innerHTML = greenCar.score;
-        document.getElementById('blueScore').innerHTML = blueCar.score;;
+        document.getElementById('blueScore').innerHTML = blueCar.score;
         loadLevel(levels[track]);
     }
 }
@@ -31,7 +31,7 @@ window.onload = function()
     canvasContext = canvas.getContext('2d');
 
     document.getElementById('greenScore').innerHTML = greenCar.score;
-    document.getElementById('blueScore').innerHTML = blueCar.score;;
+    document.getElementById('blueScore').innerHTML = blueCar.score;
     
 
     drawRect(0, 0, canvas.width, canvas.height, "black");

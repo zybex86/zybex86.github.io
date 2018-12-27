@@ -1,7 +1,7 @@
 // image variables
-var carPic = document.createElement("img");
-var otherCarPic = document.createElement("img");
-var trackPics = [];
+var heroPic = document.createElement("img");
+
+var worldPics = [];
 
 var picsToLoad = 0; //set automatacally based on imageList
 
@@ -17,23 +17,23 @@ function beginLoadingImage(imgVar, fileName) {
   imgVar.src = "img/"+fileName;
 }
 
-function loadImageForTrackCode(trackCode, fileName) {
-  trackPics[trackCode] = document.createElement("img");
-  beginLoadingImage(trackPics[trackCode], fileName);
+function loadImageForWorldCode(worldCode, fileName) {
+  worldPics[worldCode] = document.createElement("img");
+  beginLoadingImage(worldPics[worldCode], fileName);
 }
 
 function loadImages() {
     var imageList = [
-      // car images
-      {varName: carPic, theFile: "car1.png"},
-      {varName: otherCarPic, theFile: "car2.png"},
+      // hero images
+      {varName: heroPic, theFile: "hero1.png"},
+      
 
-      // track images
-      {trackType: TRACK_ROAD, theFile: "track_road.png"},
-      {trackType: TRACK_WALL, theFile: "track_wall.png"},
-      {trackType: TRACK_START, theFile: "track_start.png"},
-      {trackType: TRACK_GOAL, theFile: "track_goal.png"},
-      {trackType: TRACK_TREE, theFile: "track_tree.png"}
+      // world images
+      {worldType: WORLD_ROAD, theFile: "world_road.png"},
+      {worldType: WORLD_WALL, theFile: "world_wall.png"},
+      {worldType: WORLD_START, theFile: "world_start.png"},
+      {worldType: WORLD_GOAL, theFile: "world_goal.png"},
+      {worldType: WORLD_TREE, theFile: "world_tree.png"}
     ];
 
     picsToLoad = imageList.length;
@@ -42,7 +42,7 @@ function loadImages() {
     if(imageList[i].varName != undefined) {
         beginLoadingImage(imageList[i].varName, imageList[i].theFile);
     } else {
-      loadImageForTrackCode( imageList[i].trackType, imageList[i].theFile)
+      loadImageForWorldCode( imageList[i].worldType, imageList[i].theFile)
     }
 
   }

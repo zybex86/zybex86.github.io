@@ -21,7 +21,7 @@ function setupInput ()
     document.addEventListener('keyup', keyReleased);
 
     greenCar.setupInput(KEY_W, KEY_D, KEY_S, KEY_A);
-    blueCar.setupInput(KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_DOWN_ARROW, KEY_LEFT_ARROW);
+    
 }
 
 // connects the mouse to paddle movement
@@ -62,11 +62,11 @@ function keyPressed(evt)
   // debug to check the keyCode value
   //console.log("Key pressed: "+ evt.keyCode);
   keySet(evt, greenCar, true);
-  keySet(evt, blueCar, true);
+  
 }
 
 function keyReleased(evt)
 {
     keySet(evt, greenCar, false);
-    keySet(evt, blueCar, false);
+    
 }
