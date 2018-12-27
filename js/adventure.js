@@ -76,7 +76,7 @@ function moveAll()
 function drawAll()
 {
 
-        drawTracks();
+        drawWorlds();
         greenHero.draw();
        
         

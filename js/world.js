@@ -95,7 +95,7 @@ const WORLD_GOAL = 3;
 const WORLD_TREE = 4;
 const WORLD_PLAYERSTART = 5;
 
-//checks if there is a tyle is in the spot where we are with the car
+//checks if there is a tyle is in the spot where we are with the hero
 
 function returnTileTypeAtColRow(col, row)
 {
@@ -110,30 +110,30 @@ function returnTileTypeAtColRow(col, row)
         }
 }
 
-function carWorldHandling(whichCar)
+function heroWorldHandling(whichHero)
 {
     // which column and row and which world INDEX we are at
-    var carWorldCol = Math.floor(whichCar.x / WORLD_W);
-    var carWorldRow = Math.floor(whichCar.y / WORLD_H);
-    var worldIndexUnderCar = rowColToArrayIndex(carWorldCol, carWorldRow);
+    var heroWorldCol = Math.floor(whichHero.x / WORLD_W);
+    var heroWorldRow = Math.floor(whichHero.y / WORLD_H);
+    var worldIndexUnderHero = rowColToArrayIndex(heroWorldCol, heroWorldRow);
 
-    // car bumps the obsticle
-    if(carWorldCol >= 0 && carWorldCol < WORLD_COLUMNS &&
-       carWorldRow >= 0 && carWorldRow < WORLD_ROWS)
+    // hero bumps the obsticle
+    if(heroWorldCol >= 0 && heroWorldCol < WORLD_COLUMNS &&
+       heroWorldRow >= 0 && heroWorldRow < WORLD_ROWS)
         {
-            var tileType = returnTileTypeAtColRow(carWorldCol, carWorldRow);
+            var tileType = returnTileTypeAtColRow(heroWorldCol, heroWorldRow);
             if (tileType == WORLD_GOAL) {
                 // If somebody gets 3 wins
-                if(world <= 4 && whichCar.score != WIN_CONDITION) {
+                if(world <= 4 && whichHero.score != WIN_CONDITION) {
                     world++;
-                    whichCar.score++;
+                    whichHero.score++;
                 }
                 
                 if(!showingWinScreen) {
                     
                 }
                 
-                if(greenCar.score == WIN_CONDITION) {
+                if(greenHero.score == WIN_CONDITION) {
                     showingWinScreen = true;
 
                     return;
@@ -144,14 +144,14 @@ function carWorldHandling(whichCar)
             }
             else if (tileType != WORLD_ROAD)
             {
-                whichCar.x -= Math.cos(whichCar.ang) * (whichCar.speed * 2);
-                whichCar.y -= Math.sin(whichCar.ang) * (whichCar.speed * 2);
+                whichHero.x -= Math.cos(whichHero.ang) * (whichHero.speed * 2);
+                whichHero.y -= Math.sin(whichHero.ang) * (whichHero.speed * 2);
 
-                whichCar.speed *= -0.5;
+                whichHero.speed *= -0.5;
 
             } //end of world found
         } //end of valid col and row
-} // and of carWorldHandling()
+} // and of heroWorldHandling()
 
 function rowColToArrayIndex(col, row)
 {

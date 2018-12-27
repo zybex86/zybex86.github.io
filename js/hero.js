@@ -42,17 +42,17 @@ function heroClass() {
     this.heroPic = whichImage;
     this.speed = 0;
 
-      for (var eachRow = 0; eachRow < TRACK_ROWS; eachRow++) {
-        for (var eachCol = 0; eachCol < TRACK_COLUMNS; eachCol++)
+      for (var eachRow = 0; eachRow < WORLD_ROWS; eachRow++) {
+        for (var eachCol = 0; eachCol < WORLD_COLUMNS; eachCol++)
           {
               var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
-              // draws the hero and makes sure there is no track under it.
-              if (trackGrid[arrayIndex] == TRACK_PLAYERSTART)
+              // draws the hero and makes sure there is no world under it.
+              if (worldGrid[arrayIndex] == WORLD_PLAYERSTART)
               {
-                  trackGrid[arrayIndex] = TRACK_ROAD;
+                  worldGrid[arrayIndex] = WORLD_ROAD;
                   this.ang = -Math.PI / 2;
-                  this.x = eachCol * TRACK_W + TRACK_W / 2;
-                  this.y = eachRow * TRACK_H + TRACK_H / 2;
+                  this.x = eachCol * WORLD_W + WORLD_W / 2;
+                  this.y = eachRow * WORLD_H + WORLD_H / 2;
                   return;
               } // end of hero start position
           }// end of COLUMN for loops
@@ -109,7 +109,7 @@ function heroClass() {
       this.x += Math.cos(this.ang) * this.speed;
       this.y += Math.sin(this.ang) * this.speed;
 
-      heroTrackHandling(this);
+      heroWorldHandling(this);
   }
 
   this.draw = function ()
