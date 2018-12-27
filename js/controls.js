@@ -20,8 +20,7 @@ function setupInput ()
     document.addEventListener('keydown', keyPressed);
     document.addEventListener('keyup', keyReleased);
 
-    greenCar.setupInput(KEY_W, KEY_D, KEY_S, KEY_A);
-    blueCar.setupInput(KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_DOWN_ARROW, KEY_LEFT_ARROW);
+    greenHero.setupInput(KEY_W, KEY_D, KEY_S, KEY_A);
     
 }
 
@@ -36,25 +35,25 @@ function updateMousePos(evt)
 }
 
 // Check if the key is pressed or released
-function keySet(keyEvent, whichCar, setTo) {
+function keySet(keyEvent, whichHero, setTo) {
 
-  if (keyEvent.keyCode == whichCar.controlKeyLeft)
+  if (keyEvent.keyCode == whichHero.controlKeyLeft)
   {
-      whichCar.keyHeld_TurnLeft = setTo;
+      whichHero.keyHeld_TurnLeft = setTo;
   }
 
-  if (keyEvent.keyCode == whichCar.controlKeyRight)
+  if (keyEvent.keyCode == whichHero.controlKeyRight)
   {
-      whichCar.keyHeld_TurnRight = setTo;
+      whichHero.keyHeld_TurnRight = setTo;
   }
 
-  if (keyEvent.keyCode == whichCar.controlKeyUp)
+  if (keyEvent.keyCode == whichHero.controlKeyUp)
   {
-      whichCar.keyHeld_Gas = setTo;
+      whichHero.keyHeld_Gas = setTo;
   }
-  if (keyEvent.keyCode == whichCar.controlKeyDown)
+  if (keyEvent.keyCode == whichHero.controlKeyDown)
   {
-      whichCar.keyHeld_Reverse = setTo;
+      whichHero.keyHeld_Reverse = setTo;
   }
 }
 
@@ -62,13 +61,12 @@ function keyPressed(evt)
 {
   // debug to check the keyCode value
   //console.log("Key pressed: "+ evt.keyCode);
-  keySet(evt, greenCar, true);
-  keySet(evt, blueCar, true);
+  keySet(evt, greenHero, true);
   
 }
 
 function keyReleased(evt)
 {
-    keySet(evt, greenCar, false);
-    keySet(evt, blueCar, false);
+    keySet(evt, greenHero, false);
+    
 }
