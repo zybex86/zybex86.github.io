@@ -115,7 +115,7 @@ function carTrackHandling(whichCar)
     // which column and row and which track INDEX we are at
     var carTrackCol = Math.floor(whichCar.x / TRACK_W);
     var carTrackRow = Math.floor(whichCar.y / TRACK_H);
-    var trackIndexUnderCar = rowColToArrayIndex(carTrackCol, carTrackRow);
+    // var trackIndexUnderCar = rowColToArrayIndex(carTrackCol, carTrackRow);
 
     // car bumps the obsticle
     if(carTrackCol >= 0 && carTrackCol < TRACK_COLUMNS &&
