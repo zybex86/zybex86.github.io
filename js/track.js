@@ -121,13 +121,13 @@ function carTrackHandling(whichCar)
     if(carTrackCol >= 0 && carTrackCol < TRACK_COLUMNS &&
        carTrackRow >= 0 && carTrackRow < TRACK_ROWS)
         {
-            
-            if (trackIndexUnderCar == TRACK_GOAL) {
+            var tileHere = returnTileTypeAtColRow(carTrackCol, carTrackRow);
+            if (tileHere == TRACK_GOAL) {
                 // If somebody gets 3 wins
                 if(track <= 4 && whichCar.score != WIN_CONDITION) {
                     track++;
                     whichCar.score++;
-                }
+                } 
                 
                 if(!showingWinScreen) {
                     document.getElementById('greenScore').innerHTML = greenCar.score;
@@ -143,7 +143,7 @@ function carTrackHandling(whichCar)
                 loadLevel(levels[track]);
                 
             }
-            else if (trackIndexUnderCar != TRACK_ROAD)
+            else if (tileHere != TRACK_ROAD)
             {
                 whichCar.x -= Math.cos(whichCar.ang) * (whichCar.speed * 2);
                 whichCar.y -= Math.sin(whichCar.ang) * (whichCar.speed * 2);
@@ -169,7 +169,7 @@ function drawTracks()
         {
 
             // draws tracks that are visible
-
+            var arrayIndex = rowColToArrayIndex(eachCol, eachRow); 
             var tileKindHere = trackGrid[arrayIndex];
             var useImg = trackPics[tileKindHere];
 

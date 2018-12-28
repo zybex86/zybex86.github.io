@@ -41,8 +41,6 @@ window.onload = function()
     canvas.addEventListener('mousedown', handleMouseClick); 
 
     loadImages();
-
-    loadLevel(levels[track]);
 }
 
 function loadLevel(whichLevel) {
@@ -58,8 +56,8 @@ function imageLoadDoneSoStartGame() {
 
     // sets the inputs for the cars and creates them
     setupInput();
-    greenCar.reset(carPic, "Green Lightning");
-    blueCar.reset(otherCarPic, "Blue Tornado");
+   
+    loadLevel(levels[track]);
 }
 
 function updateAll()
