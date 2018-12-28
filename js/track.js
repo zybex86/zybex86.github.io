@@ -121,8 +121,8 @@ function carTrackHandling(whichCar)
     if(carTrackCol >= 0 && carTrackCol < TRACK_COLUMNS &&
        carTrackRow >= 0 && carTrackRow < TRACK_ROWS)
         {
-            var tileType = returnTileTypeAtColRow(carTrackCol, carTrackRow);
-            if (tileType == TRACK_GOAL) {
+            
+            if (trackIndexUnderCar == TRACK_GOAL) {
                 // If somebody gets 3 wins
                 if(track <= 4 && whichCar.score != WIN_CONDITION) {
                     track++;

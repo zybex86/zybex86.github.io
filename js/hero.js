@@ -8,6 +8,8 @@ function heroClass() {
   this.y = 75;
   this.heroPic; // which picture to use
   this.name = "Untitled hero";
+  this.keysHeld = 0;
+  this.score = 0;
 
   // helps to turn the keys into buttons
   this.keyHeld_Up = false;
@@ -33,6 +35,8 @@ function heroClass() {
   this.reset = function(whichImage, heroName) {
     this.name = heroName;
     this.heroPic = whichImage;
+    this.keysHeld = 0;
+	this.updateKeyReadout();
 
       for (var eachRow = 0; eachRow < WORLD_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < WORLD_COLUMNS; eachCol++)
@@ -41,7 +45,7 @@ function heroClass() {
               // draws the hero and makes sure there is no world under it.
               if (worldGrid[arrayIndex] == WORLD_PLAYERSTART)
               {
-                  worldGrid[arrayIndex] = WORLD_ROAD;
+                  worldGrid[arrayIndex] = WORLD_GROUND;
                   this.ang = -Math.PI / 2;
                   this.x = eachCol * WORLD_W + WORLD_W / 2;
                   this.y = eachRow * WORLD_H + WORLD_H / 2;
@@ -51,6 +55,10 @@ function heroClass() {
         }// end of ROW for loops
         console.log("NO PLAYER START FOUND!");
   } // end of heroReset()
+
+    this.updateKeyReadout = function() {
+        document.getElementById("keysHeld").innerHTML = "Keys: " + this.keysHeld;
+    }
 
   this.move = function()
   {
@@ -79,19 +87,49 @@ function heroClass() {
         }// end of go right
   
         var walkIntoTileIndex = getTileTypeAtPixelCoord(nextX, nextY);
+        var walkIntoTileType = WORLD_WALL;
 
-        if(walkIntoTileIndex == WORLD_GOAL) {
-			console.log(this.name + " WINS!");
-			loadLevel(levelOne);
-		} else if(walkIntoTileIndex == WORLD_ROAD) {
-			this.x = nextX;
-			this.y = nextY;
+        if(walkIntoTileIndex != undefined) {
+            walkIntoTileType = worldGrid[walkIntoTileIndex];
+        }
+        switch (walkIntoTileType) {
+            case WORLD_GROUND:
+                this.x = nextX;
+                this.y = nextY;
+                break;
+        
+            case WORLD_GOAL:
+                this.score++;
+                document.getElementById("winningMsg").innerHTML = "Number of Trophies: " + this.score;
+                world++;
+                // loadLevel(levels[world]);
+                break;
+
+            case WORLD_KEY:
+                this.keysHeld++; // You receive a key;
+                this.updateKeyReadout();
+
+                worldGrid[walkIntoTileIndex] = WORLD_GROUND; // if u collect a key, it draws just ground
+                break;
+
+            case WORLD_DOOR:
+                if(this.keysHeld > 0) {
+                    this.keysHeld--; // use one key
+                    this.updateKeyReadout();
+                    worldGrid[walkIntoTileIndex] = WORLD_GROUND; // if u open a door, it draws just ground
+                    
+                }
+                break;
+            
+            case WORLD_WALL:
+            default:
+                break;
 		}
   }
 
   this.draw = function ()
   {
-      drawBitmapCenteredWithRotation(this.heroPic, this.x, this.y, this.ang);
+      drawBitmapCenteredWithRotation(this.heroPic, this.x, this.y, 0);
   }
 
 }

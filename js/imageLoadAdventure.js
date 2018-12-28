@@ -27,11 +27,11 @@ function loadImages() {
       {varName: heroPic, theFile: "hero1.png"},
 
       // world images
-      {worldType: WORLD_ROAD, theFile: "world_road.png"},
+      {worldType: WORLD_GROUND, theFile: "world_ground.png"},
       {worldType: WORLD_WALL, theFile: "world_wall.png"},
-      {worldType: WORLD_START, theFile: "world_start.png"},
+      {worldType: WORLD_DOOR, theFile: "world_door.png"},
       {worldType: WORLD_GOAL, theFile: "world_goal.png"},
-      {worldType: WORLD_TREE, theFile: "world_tree.png"}
+      {worldType: WORLD_KEY, theFile: "world_key.png"}
     ];
 
     picsToLoad = imageList.length;
