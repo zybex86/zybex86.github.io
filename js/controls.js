@@ -1,10 +1,8 @@
 // key input variables
-
-
-const KEY_W = 87;
-const KEY_A = 65;
-const KEY_S = 83;
-const KEY_D = 68;
+const KEY_LEFT_ARROW = 37;
+const KEY_UP_ARROW = 38;
+const KEY_RIGHT_ARROW = 39;
+const KEY_DOWN_ARROW = 40;
 
 // debug mouse variables
 var mouseX;
@@ -17,7 +15,7 @@ function setupInput ()
     document.addEventListener('keydown', keyPressed);
     document.addEventListener('keyup', keyReleased);
 
-    greenHero.setupInput(KEY_W, KEY_D, KEY_S, KEY_A);
+    greenHero.setupInput(KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_DOWN_ARROW, KEY_LEFT_ARROW);
     
 }
 
