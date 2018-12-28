@@ -143,7 +143,7 @@ function carTrackHandling(whichCar)
                 loadLevel(levels[track]);
                 
             }
-            else if (tileType != TRACK_ROAD)
+            else if (trackIndexUnderCar != TRACK_ROAD)
             {
                 whichCar.x -= Math.cos(whichCar.ang) * (whichCar.speed * 2);
                 whichCar.y -= Math.sin(whichCar.ang) * (whichCar.speed * 2);
