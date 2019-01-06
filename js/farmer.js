@@ -17,6 +17,7 @@ function calculateResult() {
     // Display the result
 
     document.getElementById("result").innerHTML = total;
+    window.scrollTo(0, 0);
 
 }
 
