@@ -1,0 +1,20 @@
+header {
+  margin-top: 40px;
+}
+
+.animals {
+  margin: 0;
+  padding: 10px;
+}
+
+.animals input {
+  background: rgb(167, 167, 167);
+}
+
+.animals img {
+  height: 300px;
+}
+
+body {
+  background: url(../img/wood.jpg) repeat;
+}
