@@ -17,6 +17,12 @@ header {
   opacity: 0.8;
 }
 
+#calculate {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding: 15px 50px;
+}
+
 body {
   background: url(../img/wood.jpg) repeat;
 }
