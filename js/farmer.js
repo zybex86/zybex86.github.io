@@ -10,12 +10,16 @@ function calculateResult() {
     var bigDog = parseInt(document.getElementById("bigDog").value);
     var horses = parseInt(document.getElementById("horses").value);
 
-    // do the math
+    // quick validation
+    if(rabbits % 1 != 0 || sheep % 1 != 0 || smallDog % 1 != 0 || pigs % 1 != 0 || cows % 1 != 0 || bigDog % 1 != 0 || horses % 1 != 0 ) {
+        window.alert("Możesz wpisać tylko liczby!");
+        return;
+    }
 
+    // do the math
     var total = rabbits + (6 * sheep) + (6 * smallDog) + (12 * pigs) + (36 * bigDog) + (36 * cows) + (72 * horses);
 
     // Display the result
-
     document.getElementById("result").innerHTML = total;
     window.scrollTo(0, 0);
 
