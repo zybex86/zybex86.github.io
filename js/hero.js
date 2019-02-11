@@ -7,7 +7,7 @@ function heroClass() {
   this.x = 75;
   this.y = 75;
   this.heroPic; // which picture to use
-  this.name = "Untitled hero";
+  this.name = "Vestius the Galant";
   this.keysHeld = 0;
   this.score = 0;
 
@@ -102,7 +102,7 @@ function heroClass() {
                 this.score++;
                 document.getElementById("winningMsg").innerHTML = "Number of Trophies: " + this.score;
                 world++;
-                // loadLevel(levels[world]);
+                loadLevel(levels[world]);
                 break;
 
             case WORLD_KEY:
