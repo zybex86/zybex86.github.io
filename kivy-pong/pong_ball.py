@@ -2,6 +2,7 @@ from kivy.properties import NumericProperty, ReferenceListProperty
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 
+
 class PongBall(Widget):
 
     # velocity of the ball on x and y axis
