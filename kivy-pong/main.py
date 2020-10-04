@@ -4,6 +4,7 @@ from kivy.uix.widget import Widget
 
 from pong_ball import PongBall
 from pong_game import PongGame
+from pong_paddle import PongPaddle
 
 
 class PongApp(App):
