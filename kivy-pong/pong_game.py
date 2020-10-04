@@ -1,9 +1,11 @@
 from random import randint
 
+from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 
+WIN_CONDITION = 5
 
 class PongGame(Widget):
     ball = ObjectProperty(None)
@@ -24,9 +26,13 @@ class PongGame(Widget):
         # went of to a side to score point?
         if self.ball.y < self.y:
             self.player2.score += 1
+            if self.player2.score == WIN_CONDITION:
+                App.get_running_app().stop()
             self.serve_ball(vel=(randint(-20, 20), 6))
         if self.ball.y > self.height:
             self.player1.score += 1
+            if self.player1.score == WIN_CONDITION:
+                App.get_running_app().stop()
             self.serve_ball(vel=(randint(-20, 20), -6))
 
         # bounce off left and right
