@@ -3,9 +3,9 @@ from random import randint
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
-from kivy.vector import Vector
 
 WIN_CONDITION = 5
+
 
 class PongGame(Widget):
     ball = ObjectProperty(None)
