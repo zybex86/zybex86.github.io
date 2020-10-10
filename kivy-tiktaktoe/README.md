@@ -1,4 +1,4 @@
-# KIVY PONG GAME
+# KIVY TIC-TAC-TOE
 
 ## STACK
 
