@@ -11,6 +11,6 @@ class PongPaddle(Widget):
         if self.collide_widget(ball):
             vx, vy = ball.velocity
             offset = ball.center_x - (self.x + self.width / 2)
-            bounced = Vector(vx, -vy)
+            bounced = Vector(vx, -(vy * 1.05))
             ball.velocity = offset * 0.35, bounced.y
             
