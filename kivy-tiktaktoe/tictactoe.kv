@@ -1,0 +1,19 @@
+#:kivy 1.0.9
+
+<TicTacToeGame>:
+    canvas:
+        Rectangle:
+            pos: self.center_x - 150, self.center_y + 75 
+            size: self.width / 2, 10
+        
+        Rectangle:
+            pos: self.center_x - 150, self.center_y - 75 
+            size: self.width / 2, 10
+
+        Rectangle:
+            pos: self.center_x - 50, self.center_y - 200
+            size: 10, self.height / 1.5
+        
+        Rectangle:
+            pos: self.center_x + 100, self.center_y - 200
+            size: 10, self.height / 1.5
