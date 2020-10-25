@@ -3,9 +3,9 @@ from random import randint
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
-from kivy.vector import Vector
 
 WIN_CONDITION = 5
+
 
 class PongGame(Widget):
     ball = ObjectProperty(None)
@@ -38,7 +38,7 @@ class PongGame(Widget):
         # bounce off left and right
         if (self.ball.x < 0) or (self.ball.right > self.width):
             self.ball.velocity_x *= -1
-    
+
     def on_touch_move(self, touch):
         if touch.y < self.height/3:
             self.player1.center_x = touch.x
